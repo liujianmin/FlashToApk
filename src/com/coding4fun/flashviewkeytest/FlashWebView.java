@@ -27,6 +27,8 @@ public class FlashWebView extends WebView {
         {
             case  MotionEvent.ACTION_DOWN:
                 Log.d("test","ACTION_DOWN");
+                KeyEvent  keyevent = new KeyEvent(0, KeyEvent.KEYCODE_DPAD_RIGHT);;
+                onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, keyevent);
                 break;
             case  MotionEvent.ACTION_UP:
                 Log.d("test","ACTION_UP");
@@ -42,8 +44,7 @@ public class FlashWebView extends WebView {
         
         Log.d("test","I anm here2");
         
-      //  KeyEvent  keyevent = new KeyEvent(0, KeyEvent.KEYCODE_DPAD_RIGHT);;
-      //  onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, keyevent);
+
         // TODO Auto-generated method stub
         return super.onTouchEvent(event);
     }

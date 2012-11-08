@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         mWebView.getSettings().setPluginsEnabled(true);
         mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         mWebView.setBackgroundColor(Color.parseColor("#000000"));
-       // mWebView.loadUrl("file:///android_asset/game.swf");
+        mWebView.loadUrl("file:///android_asset/game.swf");
     }
     
 
