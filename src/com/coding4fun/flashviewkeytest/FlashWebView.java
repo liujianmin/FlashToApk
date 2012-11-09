@@ -8,9 +8,19 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
+
+
 public class FlashWebView extends WebView implements GameKeyListener{
 
     VirtualKeypad vkb;
+    
+    
+    private static final int GAMEPAD_LEFT_RIGHT =
+        (KeyEvent.KEYCODE_DPAD_LEFT | KeyEvent.KEYCODE_DPAD_RIGHT);
+private static final int GAMEPAD_UP_DOWN =
+        (KeyEvent.KEYCODE_DPAD_UP | KeyEvent.KEYCODE_DPAD_DOWN);
+private static final int GAMEPAD_DIRECTION =
+        (GAMEPAD_UP_DOWN | GAMEPAD_LEFT_RIGHT);
     
 
     public FlashWebView(Context context, AttributeSet attrs) {
@@ -18,6 +28,7 @@ public class FlashWebView extends WebView implements GameKeyListener{
         // TODO Auto-generated constructor stub
         
          vkb = new VirtualKeypad(this,this);
+         vkb.resize(1024, 720);
         
     }
 
@@ -50,7 +61,7 @@ public class FlashWebView extends WebView implements GameKeyListener{
         // TODO Auto-generated method stub
         
         if (vkb != null)
-            return vkb.onTouch(event, true);
+             vkb.onTouch(event, true);
         
         
         return super.onTouchEvent(event);
@@ -62,6 +73,16 @@ public class FlashWebView extends WebView implements GameKeyListener{
         int states = 0;
         if (vkb != null)
             states |= vkb.getKeyStates();
+        
+        
+        if ((states & GAMEPAD_LEFT_RIGHT) == GAMEPAD_LEFT_RIGHT)
+            states &= ~GAMEPAD_LEFT_RIGHT;
+        if ((states & GAMEPAD_UP_DOWN) == GAMEPAD_UP_DOWN)
+            states &= ~GAMEPAD_UP_DOWN;
+        
+        
+        KeyEvent keyevent = new KeyEvent(0, states);
+        onKeyDown(states, keyevent);
     }
 
     /* (non-Javadoc)

@@ -97,7 +97,7 @@ public class VirtualKeypad {
 	public final void resize(int w, int h) {
 		SharedPreferences prefs = PreferenceManager.
 				getDefaultSharedPreferences(context);
-		vibratorEnabled = prefs.getBoolean("enableVibrator", true);
+		vibratorEnabled = prefs.getBoolean("enableVibrator", false);
 		dpad4Way = prefs.getBoolean("dpad4Way", false);
 
 		int value = prefs.getInt("dpadDeadZone", 2);
@@ -118,12 +118,16 @@ public class VirtualKeypad {
 		leftShoulder.hide(prefs.getBoolean("hideShoulders", false));
 		rightShoulder.hide(prefs.getBoolean("hideShoulders", false));
 
-		scaleX = (float) w / view.getWidth();
-		scaleY = (float) h / view.getHeight();
-
-		float controlScale = getControlScale(prefs);
-		float sx = scaleX * controlScale;
-		float sy = scaleY * controlScale;
+//		scaleX = (float) w / view.getWidth();
+//		scaleY = (float) h / view.getHeight();
+//
+//		float controlScale = getControlScale(prefs);
+//		float sx = scaleX * controlScale;
+//		float sy = scaleY * controlScale;
+		
+      float sx = 2;
+      float sy = 2; 
+		
 		Resources res = context.getResources();
 		for (Control c : controls)
 			c.load(res, sx, sy);
