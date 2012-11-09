@@ -9,9 +9,14 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
-public class MainActivity extends Activity {
+import ch.niederb.android.js.Joystick;
+import ch.niederb.android.js.Joystick.OnJoystickChangeListener;
+
+public class MainActivity extends Activity implements OnJoystickChangeListener {
 
     FlashWebView mWebView;
+    
+  //  Joystick joystick;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,12 @@ public class MainActivity extends Activity {
         mWebView.getSettings().setPluginsEnabled(true);
         mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         mWebView.setBackgroundColor(Color.parseColor("#000000"));
-        mWebView.loadUrl("file:///android_asset/game.swf");
+      //  mWebView.loadUrl("file:///android_asset/game.swf");
+        
+     //   joystick  =  (Joystick) findViewById(R.id.joystick);
+     //   joystick.setOnJoystickChangeListener(this, 100);
+        
+        
     }
     
 
@@ -47,6 +57,13 @@ public class MainActivity extends Activity {
         mWebView.onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT, keyevent);
         
         return super.onTouchEvent(event);
+    }
+
+
+    @Override
+    public void onValueChanged(double xValue, double yValue) {
+        // TODO Auto-generated method stub
+        Log.d("aa", "xvalue = "+xValue+" yvalue = "+yValue);
     }
     
     

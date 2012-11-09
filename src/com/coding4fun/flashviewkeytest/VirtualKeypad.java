@@ -125,6 +125,9 @@ public class VirtualKeypad {
 //		float sx = scaleX * controlScale;
 //		float sy = scaleY * controlScale;
 		
+      scaleX = 1;
+      scaleY = 1;
+		
       float sx = 2;
       float sy = 2; 
 		
@@ -242,7 +245,7 @@ public class VirtualKeypad {
 	}
 
 	private void reposition(int w, int h, SharedPreferences prefs) {
-		String layout = prefs.getString("vkeypadLayout", "top_bottom");
+		String layout = prefs.getString("vkeypadLayout", "");
 
 		if ("top_bottom".equals(layout))
 			makeTopBottom(w, h);
